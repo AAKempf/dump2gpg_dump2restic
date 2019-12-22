@@ -10,7 +10,7 @@
 # restic variables
 
 RES_REPO="-r sftp:127.0.0.1:/var/archiv/repos/base-dumps"
-export RESTIC_PASSWORD_FILE="sftp:127.0.0.1:/home/user/.restic.pw"
+export RESTIC_PASSWORD_FILE="$HOME/.restic.pw"
 RES_TAG=$(date +'%Y-%m-%d')
 
 DUMPFILE="$HOME/.dumps/base_data.sql"

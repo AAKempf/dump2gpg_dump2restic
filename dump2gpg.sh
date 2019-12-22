@@ -7,9 +7,9 @@
 
 # config
 
-DUMPDIR=~"/.dumps"
+DUMPDIR="$HOME/.dumps"
 DUMPFILE="base_data.sql"
-SAVEDIR=~"/mybackup"
+SAVEDIR="$HOME/mybackup"
 
 DB1="geodata"
 DB2="production"
@@ -17,7 +17,7 @@ DB3="ads_log"
 
 SQLOPT="--opt --disable-keys --databases $DB1 $DB2 $DB3"
 
-PWFILE=~"/.gnupg/base-passwd"
+PWFILE="$HOME/.gnupg/base-passwd"
 
 # dump
 mysqldump $SQLOPT > $DUMPDIR/$DUMPFILE

@@ -5,7 +5,7 @@
 
 # restic variables
 
-RES_REPO="sftp:127.0.0.1://var/archiv/repos/base-dumps"
+RES_REPO="sftp:127.0.0.1:/var/archiv/repos/base-dumps"
 export RESTIC_PASSWORD_FILE="$HOME/.restic.pw"
 
 KEEP_LAST="20"
