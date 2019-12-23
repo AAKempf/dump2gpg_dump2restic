@@ -1,34 +1,34 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # collection
 # ---------------------------------------------------------------------
 
 # restic variables
 
-RES_REPO="sftp:127.0.0.1:/var/archiv/repos/base-dumps"
+resrepo='-r sftp:127.0.0.1:/var/archiv/repos/base-dumps'
 export RESTIC_PASSWORD_FILE="$HOME/.restic.pw"
 
-KEEP_LAST="20"
-KEEP_DAILY="7"
-KEEP_WEEKLY="4"
-KEEP_MONTHLY="6"
-KEEP_YEARLY="3"
-LIMIT_UPLOAD="500"
+last='20'
+daily='7'
+weekly='4'
+monthly='6'
+yearly='3'
+limit='500'
 
 
-restic snapshots -r $RES_REPO
+restic snapshots $resrepo
 
-# restic restore latest -r  $RES_REPO --target /
+# restic restore latest -r  $resrepo --target /
 
 #
 restic forget \
-  --keep-last $KEEP_LAST \
-  --keep-daily $KEEP_DAILY \
-  --keep-weekly $KEEP_WEEKLY \
-  --keep-monthly $KEEP_MONTHLY \
-  --keep-yearly $KEEP_YEARLY \
-  --limit-upload $LIMIT_UPLOAD \
+  --keep-last $last \
+  --keep-daily $daily \
+  --keep-last $weekly \
+  --keep-monthly $monthly \
+  --keep-yearly $yearly \
+  --limit-upload $limit \
   --prune \
-  -r $RES_REPO
+  $resrepo
 
 # EOF

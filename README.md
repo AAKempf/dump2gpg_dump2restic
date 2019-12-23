@@ -1,10 +1,11 @@
 # Small MySQL Backup Scripts with GPG and Restic 
 
-1. dump2gpg.sh: mysqldump databases and encrypt them with gpg, which call 
-2. dump2restic.sh to backup the dump.
-3. localimport.sh: fetching the gpg-file via sftp, decrypt it and pipe it to mysql on a local machine
+**backupdump.sh**: mysqldump databases, encrypt them with gpg, backups the dump with restic.
 
-Scripts 1) and 2) could be running as cronjobs on the server. Script 3) is for a local copy of the server databases.
+
+**localimport.sh**: fetching the gpg-file via sftp, decrypt it and pipe it to mysql on a local machine
+
+backupdump.sh could be running as a cronjob on the server. localimport.sh generates a local copy of the server database.
 
 Use them, if you like.
 

@@ -1,39 +1,37 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Importing encrypted mysql dumps
 # ---------------------------------------------------------------------
 # "pv" is a tool to display the piped bytes in MB/sec
 # Set password for mysql in ~/.my.cnf
 # Set password for sftp with ssh-keygen
-# Set password for gpg in ~/.gnupg/example-passwd
+# Set password for gpg in ~/.gnupg/dump-passwd
 
+# config
 # sftp source
-SOURCE="127.0.0.1:/var/archiv"
+source='127.0.0.1:/var/archiv'
 # local target dir
-DUMPDIR="$HOME"
+dumpdir=$HOME
 # encrypted dump file name
-DUMPFILE="base_data.sql.gpg"
+dumpfile='server.sql.gpg'
 # local path and file
-DUMP="$DUMPDIR/$DUMPFILE"
+dump="$dumpdir/$dumpfile"
 # password file
-PWFILE="$HOME/.gnupg/base-passwd"
+pwfile="$HOME/.gnupg/dump-passwd"
 
+# start
 clear
 date
-echo "# fetch $DUMPFILE"
+echo "# fetch $dumpfile"
+sftp $source/$dumpfile $dumpdir
 
-sftp $SOURCE/$DUMPFILE $DUMPDIR
-
-
-if [ -f "$DUMP" ]
+if [ -f "$dump" ]
 then
 
-    echo "# decrypt $DUMPFILE and pipe to mysql"
-
-    cat $PWFILE | gpg2 --passphrase-fd 0 --batch --decrypt $DUMP | pv | mysql
-
-    rm $DUMP
+  echo "# decrypt $dumpfile and pipe to mysql"
+  cat $pwfile | gpg2 --passphrase-fd 0 --batch --decrypt $dump | pv | mysql
+  rm $dump
 
 fi
-
+date
 # EOF
