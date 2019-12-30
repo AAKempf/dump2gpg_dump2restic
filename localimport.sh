@@ -8,9 +8,9 @@
 # Set password for gpg in ~/.gnupg/dump-passwd
 
 # config
-# sftp source
-source='127.0.0.1:/var/archiv'
-# local target dir
+# sftp target dir
+targetdir='127.0.0.1:/var/archiv'
+# local targetdir dir
 dumpdir=$HOME
 # encrypted dump file name
 dumpfile='server.sql.gpg'
@@ -23,7 +23,7 @@ pwfile="$HOME/.gnupg/dump-passwd"
 clear
 date
 echo "# fetch $dumpfile"
-sftp $source/$dumpfile $dumpdir
+sftp $targetdir/$dumpfile $dumpdir
 
 if [ -f "$dump" ]
 then
